@@ -133,13 +133,18 @@
     outline-offset: 3px;
   }
 
-  /* ほかの作品 */
+  /* 下のテキストリンク（noteの記事・ほかの作品） */
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+  }
   .more {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     min-height: 48px;
-    margin-top: 32px;
     padding: 0 8px;
     color: var(--purple);
     font-size: 15px;
@@ -149,6 +154,7 @@
     text-decoration-thickness: 2px;
     text-underline-offset: 6px;
   }
+  .more[hidden] { display: none; }
   footer {
     margin-top: 28px;
     font-size: 12px;
@@ -194,11 +200,23 @@
       </div>
     </section>
 
-    <a class="more" href="https://hanaasa-dev.github.io/portfolio/">ほかの作品を見る<span aria-hidden="true">›</span></a>
+    <nav class="links">
+      <!-- noteの記事は、公開したら下の NOTE_URL に記事のURLを入れるだけで表示される（空のあいだは出さない） -->
+      <a class="more" id="note-link" hidden>この作品が生まれるまで<span aria-hidden="true">›</span></a>
+      <a class="more" href="https://hanaasa-dev.github.io/portfolio/">ほかの作品を見る<span aria-hidden="true">›</span></a>
+    </nav>
   </main>
 
   <footer>© HANAASA</footer>
 
 </div>
+<script>
+  const NOTE_URL = "";
+  if (NOTE_URL) {
+    const a = document.getElementById("note-link");
+    a.href = NOTE_URL;
+    a.hidden = false;
+  }
+</script>
 </body>
 </html>
